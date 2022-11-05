@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -62,7 +63,7 @@ public class AndroidDemo extends Activity {
          * and that color can be seen after we add the EditBox.. because the
          * editbox has that color. Try changing the ll color to RED and you'll see.
          *
-         * Also notice we gave a separate "params" to this EditText.. 
+         * Also notice we gave a separate "params" to this EditText..
          */
         LinearLayout.LayoutParams widgetParams =
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -74,6 +75,28 @@ public class AndroidDemo extends Activity {
         tb.setFocusable(false);
         tb.setLayoutParams(widgetParams);
         ll.addView(tb);
+
+        /**
+         * We don't want anything else on this line, but on the next
+         * line we want two buttons so we will create a new
+         * horizontal layout which will naturally be underneath the above
+         * horizontal layout
+         */
+        ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        ll.setBackgroundColor(Color.WHITE);
+        ll.setLayoutParams(containerParams);
+        root.addView(ll);
+
+        Button b = new Button(this);
+        b.setText("Red");
+        b.setLayoutParams(widgetParams);
+        ll.addView(b);
+
+        b = new Button(this);
+        b.setText("Green");
+        b.setLayoutParams(widgetParams);
+        ll.addView(b);
 
         setContentView(root); // notice how we sort of attached other views to this root, and finally displayed the root itself here, which contains all those attachments
     }
