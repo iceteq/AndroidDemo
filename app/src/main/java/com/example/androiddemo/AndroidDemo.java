@@ -2,13 +2,12 @@ package com.example.androiddemo;
 
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
+import java.util.Random;
 
 
 /**
@@ -16,13 +15,30 @@ import android.widget.LinearLayout;
  */
 public class AndroidDemo extends Activity {
 
-
-        @Override
+    @Override
     public void onCreate(Bundle state) {
-            super.onCreate(state);
 
-            setContentView(R.layout.layout);
-        }
+        // these two lines are essential
+        super.onCreate(state);
+        setContentView(R.layout.layout);
+
+        // what comes after above two lines, is example how to add funcitonality to buttons
+        final EditText tb1 = (EditText) findViewById(R.id.justATextBox);
+
+        // 1. listener
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                tb1.setText(String.valueOf("1337"));
+            }
+        };
+
+        // 2. listener setter for both buttons
+        ((Button) findViewById(R.id.button)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.button2)).setOnClickListener(listener);
+
+
+    }
 
 //
 //    private LinearLayout root; // note that we save this for later
